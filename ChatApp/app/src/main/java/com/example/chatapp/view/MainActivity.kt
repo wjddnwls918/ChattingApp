@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearSmoothScroller
 import androidx.recyclerview.widget.RecyclerView
 import com.example.chatapp.R
 import com.example.chatapp.common.EventObserver
@@ -53,6 +54,13 @@ class MainActivity : AppCompatActivity() {
     }*/
 
     fun initObserve() {
+
+        val smoothScroller:RecyclerView.SmoothScroller by lazy {
+            object: LinearSmoothScroller(this) {
+                override fun getVerticalSnapPreference() = SNAP_TO_START
+            }
+        }
+
         viewModel._roomId.observe(this, Observer {
             //binding.tvMainChat.text = ""
             viewModel.clearAdapter()
@@ -63,7 +71,10 @@ class MainActivity : AppCompatActivity() {
                 Log.d("checkMessage", "name : " + it[0].name)
                 Log.d("checkMessage", "size : " + it.size.toString())
 
-                binding.rcvChat.scrollToPosition(it.size-1)
+                //binding.rcvChat.scrollToPosition(it.size-1)
+
+                smoothScroller.targetPosition = it.size-1
+                binding.rcvChat.layoutManager?.startSmoothScroll(smoothScroller)
             }
         })
 /*
@@ -73,6 +84,13 @@ class MainActivity : AppCompatActivity() {
             }
         })
  */
+
+
+
+
+
+
+
 
     }
 
