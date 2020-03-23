@@ -1,0 +1,178 @@
+ext {
+    versions = [
+            kotlin_version              : '1.3.61',
+            okHttp_version              : '3.12.1',
+            gson_version                : '2.8.6',
+            retrofit_version            : '2.7.1',
+            stetho_version              : '1.5.1',
+
+            recyclerview_version        : '28.0.0',
+
+            material_version            : '1.0.0-beta01',
+
+            coroutine_version           : '1.3.3',
+            archLifecycle_version       : '2.2.0-rc02',
+            room_version                : '2.2.2',
+
+            rxandroid_version           : '2.1.1',
+            rxjava_version              : '2.2.17',
+
+            glide_version               : '4.11.0',
+
+            //opensource UI version
+            vitor_version               : '1.0.4',
+            drawableView_version        : '0.6.0',
+            sublimepicker_version       : '2.1.2',
+            colorpicker_version         : '1.1.0',
+            materialCalendarView_version: '2.0.1',
+
+            //tedPermission
+            tedpermission_version       : '2.2.2',
+
+            //
+            multidex_version            : '2.0.1',
+            threeten_version            : '1.1.1',
+
+            //lottie
+            lottie_version              : '3.0.7',
+
+            //
+            work_version                : '2.2.0',
+            firebaseAnalytics_version   : '17.2.0',
+            crashlytics_version         : '2.10.1',
+
+            //socket io
+            socket_version              : '1.0.0',
+
+    ]
+
+    opensourceUI = [
+            vitor               : "com.victor:lib:$versions.vitor_version",
+            androidProcessButton: "com.github.dmytrodanylyk.android-process-button:library:$versions.vitor_version",
+            drawableview        : "me.panavtec:drawableview:$versions.drawableView_version",
+
+            sublimepicker       : "com.appeaser.sublimepickerlibrary:sublimepickerlibrary:$versions.sublimepicker_version",
+
+            //implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+            colorpicker         : "com.jaredrummler:colorpicker:$versions.colorpicker_version",
+
+            //MaterialCalendarView
+            materialCalendarView: "com.github.prolificinteractive:material-calendarview:$versions.materialCalendarView_version"
+
+    ]
+
+    basicDependencies = [
+            //multidex
+            multidex     : "androidx.multidex:multidex:$versions.multidex_version",
+
+            threetenabp  : "com.jakewharton.threetenabp:threetenabp:$versions.threeten_version",
+
+            recyclerview : "com.android.support:recyclerview-v7:$versions.recyclerview_version",
+            material     : "com.google.android.material:material:$versions.material_version",
+            tedpermission: "gun0912.ted:tedpermission:$versions.tedpermission_version"
+    ]
+
+    networkDependencies = [
+            okHttp                  : "com.squareup.okhttp3:okhttp:$versions.okHttp_version",
+            okHttpLoggingInterceptor: "com.squareup.okhttp3:logging-interceptor:$versions.okHttp_version",
+            retrofit                : "com.squareup.retrofit2:retrofit:$versions.retrofit_version",
+            gsonConverter           : "com.squareup.retrofit2:converter-gson:$versions.retrofit_version",
+            rxjavaConverter         : "com.squareup.retrofit2:adapter-rxjava2:$versions.retrofit_version",
+
+    ]
+
+    stetho = [
+            stetho      : "com.facebook.stetho:stetho:$versions.stetho_version",
+            stethoOkhttp: "com.facebook.stetho:stetho-okhttp3:$versions.stetho_version"
+    ]
+
+    coroutine = [
+            coroutine       : "org.jetbrains.kotlinx:kotlinx-coroutines-core:$versions.coroutine_version",
+            coroutineAndroid: "org.jetbrains.kotlinx:kotlinx-coroutines-android:$versions.coroutine_version"
+    ]
+
+    androidArchitectureComponents = [
+            // Lifecycle components
+            lifecycleExtensions: "androidx.lifecycle:lifecycle-extensions:$versions.archLifecycle_version",
+            //coreTesting        : "androidx.arch.core:core-testing:$versions.androidxArchVersion",
+
+            // ViewModel Kotlin support
+            viewmodelKtx       : "androidx.lifecycle:lifecycle-viewmodel-ktx:$versions.archLifecycle_version",
+
+            roomRuntime        : "androidx.room:room-runtime:$versions.room_version",
+            roomKtx            : "androidx.room:room-ktx:$versions.room_version",
+            roomRxjava         : "androidx.room:room-rxjava2:$versions.room_version"
+
+
+    ]
+
+/*
+    lifecycleCompiler = [
+            lifecycleCompiler: "androidx.lifecycle:lifecycle-compiler:$versions.archLifecycleVersion"
+    ]
+*/
+
+    glide = [
+            glide: "com.github.bumptech.glide:glide:$versions.glide_version"
+    ]
+
+    glideCompiler = [
+            glideCompler: "com.github.bumptech.glide:compiler:$versions.glide_version"
+    ]
+
+    rx = [
+            rxandroid: "io.reactivex.rxjava2:rxandroid:$versions.rxandroid_version",
+            // Because RxAndroid releases are few and far between, it is recommended you also
+            // explicitly depend on RxJava's latest version for bug fixes and new features.
+            // (see https://github.com/ReactiveX/RxJava/releases for latest 2.x.x version)
+            rxjava   : "io.reactivex.rxjava2:rxjava:$versions.rxjava_version"
+    ]
+
+    byKapt = [
+            roomCompiler     : "androidx.room:room-compiler:$versions.room_version",
+            lifecycleCompiler: "androidx.lifecycle:lifecycle-compiler:$versions.archLifecycle_version",
+    ]
+
+    byAndroidTestImplementation = [
+            roomTesting: "androidx.room:room-testing:$versions.room_version",
+            //coreTesting: "androidx.arch.core:core-testing:$versions.archLifecycle_version"
+    ]
+
+    kakao = [
+            files: files('libs/libDaumMapAndroid.jar')
+    ]
+
+    lottie = [
+            lottie: "com.airbnb.android:lottie:$versions.lottie_version"
+    ]
+
+    workManager = [
+            //WorkManager
+            // (Java only)
+            workRuntime      : "androidx.work:work-runtime:$versions.work_version",
+
+            // Kotlin + coroutines
+            workRuntimeKtx   : "androidx.work:work-runtime-ktx:$versions.work_version",
+
+            // optional - RxJava2 support
+            workRxjava       : "androidx.work:work-rxjava2:$versions.work_version",
+
+            // add the Firebase SDK for Google Analytics
+            // Check for v11.4.2 or higher
+            firebaseCore     : "com.google.firebase:firebase-core:$versions.firebaseAnalytics_version",
+
+            firebaseAnalytics: "com.google.firebase:firebase-analytics:$versions.firebaseAnalytics_version",
+
+            crashlytics      : "com.crashlytics.sdk.android:crashlytics:$versions.crashlytics_version"
+    ]
+
+    socketIO = [
+            socket: "io.socket:socket.io-client:$versions.socket_version"
+    ]
+
+    gson = [
+            gson: "com.google.code.gson:gson:$versions.gson_version"
+    ]
+
+}

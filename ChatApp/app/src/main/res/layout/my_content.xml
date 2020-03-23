@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="chat"
+            type="com.example.chatapp.model.Chat" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/chat_item_height_size">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_start_of_input_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.4" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:text="@{chat.inputTime}"
+            app:layout_constraintBottom_toBottomOf="@id/gl_end_of_name"
+            app:layout_constraintEnd_toEndOf="@id/gl_start_of_input_time"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:text="@{chat.name}"
+            app:layout_constraintBottom_toBottomOf="@id/gl_end_of_name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/gl_start_of_input_time"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="@dimen/main_small_margin"
+            android:background="@drawable/radius_my_background"
+            android:gravity="end|center"
+            android:text="@{chat.message}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/gl_end_of_name" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_end_of_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.3" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

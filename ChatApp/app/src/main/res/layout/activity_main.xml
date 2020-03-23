@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".view.MainActivity">
+
+    <data>
+
+        <variable
+            name="viewmodel"
+            type="com.example.chatapp.view.MainViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_end_of_enter_room"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.1" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_end_of_name_and_room"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.2" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_start_of_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.9" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_start_of_message_send_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.7" />
+
+        <!--
+        <ScrollView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@id/gl_start_of_message"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/gl_end_of_name_and_room">
+
+            <TextView
+                android:id="@+id/tv_main_chat"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/main_small_margin"
+                android:layout_marginEnd="@dimen/main_small_margin" />
+
+        </ScrollView>
+        -->
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rcv_chat"
+            bind_adapter="@{viewmodel.chatAdapter}"
+            items="@{viewmodel.allChats}"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="@id/gl_start_of_message"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/gl_end_of_name_and_room" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_input_name"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="@dimen/main_small_margin"
+            android:hint="@string/main_name_hint"
+            app:hintEnabled="true"
+            app:layout_constraintBottom_toBottomOf="@id/gl_end_of_name_and_room"
+            app:layout_constraintEnd_toEndOf="@id/gl_center_vertical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/gl_end_of_enter_room">
+
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_input_name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:singleLine="true"
+                android:textSize="@dimen/chat_input_text_size" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="@dimen/main_small_margin"
+            android:onClick="@{() -> viewmodel.onEnterRoomClick()}"
+            android:text="@string/main_enter_room"
+            app:layout_constraintBottom_toBottomOf="@id/gl_end_of_enter_room"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/gl_start_of_message_send_button"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_input_user_id"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="@dimen/main_small_margin"
+            android:hint="@string/main_user_id_hint"
+            app:hintEnabled="true"
+            app:layout_constraintBottom_toBottomOf="@id/gl_end_of_name_and_room"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/gl_center_vertical"
+            app:layout_constraintTop_toTopOf="@id/gl_end_of_enter_room">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_input_user_id"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="number"
+                android:singleLine="true"
+                android:textSize="@dimen/chat_input_text_size" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_input_room"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="@dimen/main_small_margin"
+            android:hint="@string/main_room_hint"
+            app:hintEnabled="true"
+            app:layout_constraintBottom_toBottomOf="@id/gl_end_of_enter_room"
+            app:layout_constraintEnd_toEndOf="@id/gl_start_of_message_send_button"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_input_room"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="number"
+                android:singleLine="true"
+                android:textSize="@dimen/chat_input_text_size" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_input_msg"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/main_small_margin"
+            android:layout_marginEnd="@dimen/main_small_margin"
+            android:hint="@string/main_message_hint"
+            app:hintEnabled="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/gl_start_of_message_send_button"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/gl_start_of_message">
+
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_input_msg"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:singleLine="true" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <Button
+            android:id="@+id/btn_test"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="@dimen/main_small_margin"
+            android:onClick="@{() -> viewmodel.onMessageSendClick()}"
+            android:text="@string/main_message_send"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/gl_start_of_message_send_button"
+            app:layout_constraintTop_toTopOf="@id/gl_start_of_message" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
