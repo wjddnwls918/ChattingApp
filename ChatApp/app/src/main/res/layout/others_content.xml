@@ -11,20 +11,30 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/chat_item_height_size">
+        android:layout_height="@dimen/chat_item_height_size"
+        android:layout_margin="@dimen/main_small_margin">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_start_of_chat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/gl_start_of_input_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.6" />
+            app:layout_constraintGuide_percent="0.3" />
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:gravity="center"
+            android:layout_margin="@dimen/main_small_margin"
+            android:gravity="start|bottom"
             android:text="@{chat.name}"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@id/gl_end_of_name"
             app:layout_constraintEnd_toEndOf="@id/gl_start_of_input_time"
             app:layout_constraintStart_toStartOf="parent"
@@ -33,12 +43,12 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:gravity="center"
+            android:gravity="start|bottom"
             android:text="@{chat.inputTime}"
-            app:layout_constraintBottom_toBottomOf="@id/gl_end_of_name"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@id/gl_start_of_input_time"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toStartOf="@id/gl_start_of_chat"
+            app:layout_constraintTop_toTopOf="@id/gl_end_of_name" />
 
         <TextView
             android:layout_width="0dp"
@@ -46,9 +56,10 @@
             android:layout_margin="@dimen/main_small_margin"
             android:background="@drawable/radius_other_background"
             android:gravity="start|center"
+            android:padding="@dimen/main_small_margin"
             android:text="@{chat.message}"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/gl_start_of_chat"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/gl_end_of_name" />
 
